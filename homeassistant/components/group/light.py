@@ -82,10 +82,7 @@ async def async_setup_platform(
 ) -> None:
     """Initialize light.group platform."""
 
-    _LOGGER.info(
-        "Hass: %s, Info: %s", type(hass).__name__, type(discovery_info).__name__
-    )
-
+    _LOGGER.info("%s, %s", type(hass).__name__, type(discovery_info).__name__)
     async_add_entities(
         [
             LightGroup(

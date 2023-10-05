@@ -74,9 +74,8 @@ async def async_setup_platform(
 ) -> None:
     """Set up the Cover Group platform."""
 
-    _LOGGER.info(
-        "Hass: %s, Info: %s", type(hass).__name__, type(discovery_info).__name__
-    )
+    # Log the types of hass and discovery_info
+    _LOGGER.info("%s, %s", type(hass).__name__, type(discovery_info).__name__)
 
     async_add_entities(
         [

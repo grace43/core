@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Mapping
 from contextlib import suppress
+import logging
 from typing import Any
 
 import voluptuous as vol
@@ -74,6 +75,8 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend(
     }
 )
 
+_LOGGER = logging.getLogger(__name__)
+
 
 async def async_setup_platform(
     hass: HomeAssistant,
@@ -82,6 +85,10 @@ async def async_setup_platform(
     discovery_info: DiscoveryInfoType | None = None,
 ) -> None:
     """Set up the MediaPlayer Group platform."""
+
+    # Log the types of hass and discovery_info
+    _LOGGER.info("%s, %s", type(hass).__name__, type(discovery_info).__name__)
+
     async_add_entities(
         [
             MediaPlayerGroup(
