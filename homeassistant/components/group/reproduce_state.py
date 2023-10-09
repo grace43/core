@@ -30,9 +30,6 @@ def create_new_state(member: str, state: State) -> State:
     )
 
 
-####
-
-
 async def async_reproduce_states(
     hass: HomeAssistant,
     states: Iterable[State],
