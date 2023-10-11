@@ -1,45 +1,26 @@
 """Test to test the module binary_sensor.py."""
+import unittest
+from unittest.mock import Mock, patch
 
-from homeassistant.components.roomba.binary_sensor import RoombaBinStatus
-
-# Define some test data (you may need to adjust this according to your actual data)
-test_data = {"bin": {"full": True}}
-
-
-# Create a mock Roomba objecho
-class MockRoomba:
-    """Test for the MockRoobha."""
-
-    def __init__(self, data):
-        """Test for the __init__ method."""
-        self.data = data
-        self.master_state = {
-            "state": {"reported": data}  # Set reported state based on your test_data
-        }
+from homeassistant.components.roomba.binary_sensor import get_bin_status
 
 
-def test_roomba_bin_status_on():
-    """Test the RoombaBinStatus class when bin is full."""
-    # Create a mock Roomba instance
-    roomba = MockRoomba(test_data)
+class TestGetBinStatus(unittest.TestCase):
+    """Test case for the 'get_bin_status' method in the binary_sensor module."""
 
-    # Create an instance of RoombaBinStatus
-    bin_status = RoombaBinStatus(roomba, "12345")
+    @patch("homeassistant.components.roomba.binary_sensor.roomba_reported_state")
+    def test_get_bin_status_returns_bin_status(self, mock_roomba_reported_state):
+        """Test the behavior of a function with a mocked dependency."""
 
-    # Test the unique_id property
-    assert bin_status.unique_id == "bin_12345"
+        # Mock the roomba_reported_state function
+        mock_roomba_reported_state.return_value = {"bin": {"status": "full"}}
 
-    # Test the is_on property
-    assert bin_status.is_on is True  # Updated assertion
+        # Call the get_bin_status method
+        bin_status = get_bin_status(Mock())
+
+        # Ensure that the bin_status matches the expected value
+        self.assertEqual(bin_status, {"status": "full"})
 
 
-def test_roomba_bin_status_off():
-    """Test the RoombaBinStatus class when bin is not full."""
-    # Create a mock Roomba instance with bin not full
-    roomba = MockRoomba({"bin": {"full": False}})
-
-    # Create an instance of RoombaBinStatus
-    bin_status = RoombaBinStatus(roomba, "54321")
-
-    # Test the is_on property
-    assert bin_status.is_on is False  # Updated assertion
+if __name__ == "__main__":
+    unittest.main()
