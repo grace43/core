@@ -15,6 +15,7 @@ class AQClient:
     def __init__(self, api_key, location_id, hass: HomeAssistant | None = None) -> None:
         """Initialize AQClient."""
 <<<<<<< HEAD
+<<<<<<< HEAD
         self.time = datetime.now() - timedelta(hours=24)
 =======
         self.time = datetime.now()
@@ -23,6 +24,21 @@ class AQClient:
         self.location_id = location_id
         self.client = openaq.OpenAQ(api_key=self.api_key)
         self.sensors = None
+=======
+        self.time = datetime.now() - timedelta(hours=24)
+        self.api_key = api_key
+        self.location_id = location_id
+        self.client = openaq.OpenAQ(api_key=self.api_key)
+
+        if setup_device:
+            self.setup_device()
+
+    def setup_device(self):
+        """Set sensors and metrices."""
+        device = self.get_device()
+        self.sensors = device.sensors
+        self.last_updated = device.datetime_last
+>>>>>>> 14d8d2de50 (coordinator can update data)
 
     def get_device(self):
         """Get device by id."""
