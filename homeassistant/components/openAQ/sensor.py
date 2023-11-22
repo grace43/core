@@ -81,11 +81,14 @@ async def async_setup_entry(
                 unit = UnitOfTemperature.CELSIUS
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         metric_name = metric.name
         metric_val = metric.value
 
 >>>>>>> 9ba94eb7fc (fixed stuff)
+=======
+>>>>>>> 4c34df7740 (fixed bugg)
         val_list = list(OPENAQ_PARAMETERS.values())
         key_list = list(OPENAQ_PARAMETERS.keys())
 
