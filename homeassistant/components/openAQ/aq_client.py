@@ -14,7 +14,11 @@ class AQClient:
 
     def __init__(self, api_key, location_id, hass: HomeAssistant | None = None) -> None:
         """Initialize AQClient."""
+<<<<<<< HEAD
         self.time = datetime.now() - timedelta(hours=24)
+=======
+        self.time = datetime.now()
+>>>>>>> 422ab7c6c7 (coordinator can update data)
         self.api_key = api_key
         self.location_id = location_id
         self.client = openaq.OpenAQ(api_key=self.api_key)

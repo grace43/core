@@ -35,8 +35,14 @@ class OpenAQDataCoordinator(DataUpdateCoordinator):
     async def _async_update_data(self):
         """Fetch data from AQClient and update."""
         async with asyncio.timeout(10):
+<<<<<<< HEAD
             metrics = self.client.get_latest_metrices().results
             self.data = {"timestamp": self.client.get_device().datetime_last.utc}
+=======
+            self.client.get_device()
+            metrics = self.client.get_latest_metrices().results
+            self.data = {}
+>>>>>>> 422ab7c6c7 (coordinator can update data)
             for metric in metrics:
                 self.data[metric.parameter.name] = metric.value
             return self.data
