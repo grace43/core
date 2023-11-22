@@ -53,7 +53,14 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 errors=errors,
             )
 
+<<<<<<< HEAD
         return self.async_create_entry(title=name, data=user_input)
+=======
+        return self.async_create_entry(
+            title=name,
+            data=user_input
+        )
+>>>>>>> 9ba94eb7fc (fixed stuff)
 
 
 def get_device(location_id, api_key):
