@@ -58,7 +58,6 @@ async def async_setup_entry(
     """Configure the sensor platform."""
     coordinator = hass.data[DOMAIN][entry.entry_id]
     sensors = coordinator.get_sensors()
-    # print(sensors)
     sensor_names = [sensor.parameter.name for sensor in sensors]
     sensor_names.append("last_update")
     sensors_metrics = [OPENAQ_PARAMETERS[j] for j in sensor_names]
@@ -164,7 +163,10 @@ class OpenAQSensor(SensorEntity):
             )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         name = self.entity_description.key
 >>>>>>> 422ab7c6c7 (coordinator can update data)
+=======
+>>>>>>> ca062d891e (added last_update sensor)
         return self.coordinator.data.get(name)

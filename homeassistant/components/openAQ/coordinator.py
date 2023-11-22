@@ -36,6 +36,7 @@ class OpenAQDataCoordinator(DataUpdateCoordinator):
         """Fetch data from AQClient and update."""
         async with asyncio.timeout(10):
 <<<<<<< HEAD
+<<<<<<< HEAD
             metrics = self.client.get_latest_metrices().results
             self.data = {"timestamp": self.client.get_device().datetime_last.utc}
 =======
@@ -43,6 +44,10 @@ class OpenAQDataCoordinator(DataUpdateCoordinator):
             metrics = self.client.get_latest_metrices().results
             self.data = {}
 >>>>>>> 422ab7c6c7 (coordinator can update data)
+=======
+            metrics = self.client.get_latest_metrices().results
+            self.data = {"timestamp": self.client.get_device().datetime_last.utc}
+>>>>>>> ca062d891e (added last_update sensor)
             for metric in metrics:
                 self.data[metric.parameter.name] = metric.value
             return self.data
