@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Provide common fixtures for tests."""
 from unittest.mock import MagicMock, Mock, patch
 
@@ -98,3 +99,6 @@ async def setup_openaq(hass, mock_openaq_client):
         return mock_config_entry
 
     return _setup
+=======
+"""Define test fixtures for openAQ."""
+>>>>>>> 0137d8c7a9 (create test folder)
