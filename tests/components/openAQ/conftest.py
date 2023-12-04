@@ -23,12 +23,12 @@ def mock_aq_client_for_config_flow(mock_aq_client):
                     {
                         "type": "pm25",
                         "value": 15,
-                        "last_updated": "2023-11-30T12:00:00",
+                        "last_updated": "2023-12-04T08:00:00+00:00",
                     },
                     {
                         "type": "pm10",
                         "value": 20,
-                        "last_updated": "2023-11-30T12:00:00",
+                        "last_updated": "2023-12-04T09:00:00+00:00",
                     },
                 ],
                 locality="Visby",

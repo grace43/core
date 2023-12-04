@@ -16,7 +16,7 @@ async def test_api_key_incorrect(hass: HomeAssistant, mock_aq_client_for_config_
         DOMAIN, context={"source": config_entries.SOURCE_USER}
     )
 
-    # Simulating user input with no  API key but a location id
+    # Simulating user input with no API key but a location id
     result = await hass.config_entries.flow.async_configure(
         result["flow_id"],
         {
