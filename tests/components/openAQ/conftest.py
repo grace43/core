@@ -1,5 +1,5 @@
-"""Provide common openAQ fixtures."""
-from unittest.mock import AsyncMock, Mock, patch
+"""Provide common fixtures for tests."""
+from unittest.mock import Mock, patch
 
 import pytest
 
@@ -12,31 +12,8 @@ def mock_aq_client():
 
 
 @pytest.fixture
-def mock_aq_client_for_config_flow(mock_aq_client):
-    """Fixture to provide mocked AQClient with predefined data for config flow tests."""
-    # Define standard mocked responses
-    mock_aq_client.get_device.side_effect = [
-        # Successful data retrieval
-        AsyncMock(
-            return_value=Mock(
-                sensors=[
-                    {
-                        "type": "pm25",
-                        "value": 15,
-                        "last_updated": "2023-12-04T08:00:00+00:00",
-                    },
-                    {
-                        "type": "pm10",
-                        "value": 20,
-                        "last_updated": "2023-12-04T09:00:00+00:00",
-                    },
-                ],
-                locality="Visby",
-            )
-        ),
-        # Location not found (empty sensors list)
-        AsyncMock(return_value=Mock(sensors=[], locality="")),
-        # Response for invalid or empty API key: Simulate no sensor data and no locality info
-        AsyncMock(return_value=Mock(sensors=[], locality="")),
-    ]
-    return mock_aq_client
+def mock_aq_client_no_sensors():
+    """Fixture to create a mock AQClient where get_device returns an empty sensors list."""
+    with patch("homeassistant.components.openAQ.aq_client.AQClient") as mock_client:
+        mock_client.return_value.get_device = Mock(return_value=Mock(sensors=[]))
+        yield mock_client.return_value

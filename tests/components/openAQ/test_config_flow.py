@@ -1,30 +1,32 @@
 """Test the OpenAQ config flow."""
 
-from homeassistant import config_entries, data_entry_flow
-from homeassistant.components.openAQ.const import DOMAIN
+
+from homeassistant import data_entry_flow
 from homeassistant.core import HomeAssistant
 
+# Import the fixtures defined in conftest.py
 
-async def test_api_key_incorrect(hass: HomeAssistant, mock_aq_client_for_config_flow):
-    """Test if user input for API key is incorrect."""
-    # Mocking the AQClient with predefined responses for config flow
-    mock_aq_client_for_config_flow(hass)
-    await hass.async_block_till_done()
+# Define an invalid user input with an invalid location ID
+INVALID_USER_INPUT = {
+    "location_id": "invalid_location_id",
+    "api_id": "your_api_key",  # Replace with your API key
+}
 
-    # Starting the flow
-    result = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": config_entries.SOURCE_USER}
-    )
 
-    # Simulating user input with no API key but a location id
-    result = await hass.config_entries.flow.async_configure(
-        result["flow_id"],
-        {
-            "api_id": " ",
-            "location_id": "test_location",
-        },
-    )
+async def test_config_flow_invalid_location(
+    hass: HomeAssistant, mock_aq_client_no_sensors
+):
+    """Test the OpenAQ config flow with invalid location."""
+    # Import the ConfigFlow class after applying the mock
+    from homeassistant.components.openAQ.config_flow import ConfigFlow
 
-    # Check the result
-    assert result["type"] == data_entry_flow.FlowResultType.FORM
-    assert result["step_id"] == "test_location"
+    # Initialize the config flow
+    flow = ConfigFlow()
+    flow.hass = hass
+
+    # Start the config flow with invalid user input
+    result = await flow.async_step_user(INVALID_USER_INPUT)
+
+    # Check if an error message is returned
+    assert result["type"] == data_entry_flow.RESULT_TYPE_FORM
+    assert result["errors"]["location"] == "not_found"
