@@ -6,7 +6,7 @@ from homeassistant.core import HomeAssistant
 # Define an invalid user input with an invalid location ID
 INVALID_USER_INPUT = {
     "location_id": "invalid_location_id",
-    "api_id": "your_api_key",
+    "api_id": "0ce03655421037c966e7f831503000dc93c80a8fc14a434c6406f0adbbfaa61e",
 }
 
 # Provide user input with a valid location and API key
@@ -16,6 +16,7 @@ USER_INPUT = {
 }
 
 
+# Define a test case that uses the mock_aq_client_no_sensors fixture
 async def test_config_flow_invalid_location(
     hass: HomeAssistant, mock_aq_client_no_sensors
 ):
