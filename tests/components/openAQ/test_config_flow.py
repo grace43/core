@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 """Test the OpenAQ config flow."""
 from homeassistant import data_entry_flow
 from homeassistant.components.openAQ.config_flow import ConfigFlow
@@ -65,40 +66,56 @@ import pytest
 
 from homeassistant import config_entries
 from homeassistant.components.openexchangerates.const import DOMAIN
+=======
+"""Test the OpenAQ config flow."""
+from homeassistant import data_entry_flow
+from homeassistant.components.openAQ.config_flow import ConfigFlow
+>>>>>>> 0ef05b56a4 (mock api using client (#25))
 from homeassistant.core import HomeAssistant
-from homeassistant.data_entry_flow import FlowResultType
 
-from tests.common import MockConfigEntry
+# Define an invalid user input with an invalid location ID
+INVALID_USER_INPUT = {
+    "location_id": "invalid_location_id",
+    "api_id": "0ce03655421037c966e7f831503000dc93c80a8fc14a434c6406f0adbbfaa61e",
+}
+
+# Provide user input with a valid location and API key
+USER_INPUT = {
+    "location_id": "10496",
+    "api_id": "0ce03655421037c966e7f831503000dc93c80a8fc14a434c6406f0adbbfaa61e",
+}
 
 
-@pytest.fixture(name="currencies", autouse=True)
-def currencies_fixture(hass: HomeAssistant) -> Generator[AsyncMock, None, None]:
-    """Mock currencies."""
-    with patch(
-        "homeassistant.components.openexchangerates.config_flow.Client.get_currencies",
-        return_value={"USD": "United States Dollar", "EUR": "Euro"},
-    ) as mock_currencies:
-        yield mock_currencies
+# Define a test case that uses the mock_aq_client_no_sensors fixture
+async def test_config_flow_invalid_location(
+    hass: HomeAssistant, mock_aq_client_no_sensors
+):
+    """Test the OpenAQ config flow with invalid user input."""
+    # Initialize the config flow
+    flow = ConfigFlow()
+    flow.hass = hass
+
+    # Start the config flow with invalid user input
+    result = await flow.async_step_user(INVALID_USER_INPUT)
+
+    # Check if an error message is returned
+    assert result["type"] == data_entry_flow.RESULT_TYPE_FORM
+    assert result["errors"]["location"] == "not_found"
 
 
-async def test_user_create_entry(
-    hass: HomeAssistant,
-    mock_latest_rates_config_flow: AsyncMock,
-    mock_setup_entry: AsyncMock,
-) -> None:
-    """Test we get the form."""
-    result = await hass.config_entries.flow.async_init(
-        DOMAIN, context={"source": config_entries.SOURCE_USER}
-    )
-    assert result["type"] == FlowResultType.FORM
-    assert result["errors"] is None
+# Define a test case that uses the mock_aq_client_valid_data fixture
+async def test_config_flow_valid_location(
+    hass: HomeAssistant, mock_aq_client_valid_data
+):
+    """Test the OpenAQ config flow with valid user input and mocked data."""
+    # Initialize the config flow
+    flow = ConfigFlow()
+    flow.hass = hass
 
-    result = await hass.config_entries.flow.async_configure(
-        result["flow_id"],
-        {"api_key": "test-api-key"},
-    )
-    await hass.async_block_till_done()
+    # Start the config flow with valid user input
+    result = await flow.async_step_user(USER_INPUT)
 
+<<<<<<< HEAD
     assert result["type"] == FlowResultType.CREATE_ENTRY
     assert result["title"] == "USD"
     assert result["data"] == {
@@ -291,3 +308,9 @@ async def test_reauth(
     assert result["reason"] == "reauth_successful"
     assert len(mock_setup_entry.mock_calls) == 1
 >>>>>>> 0137d8c7a9 (create test folder)
+=======
+    # Check if the flow creates an entry with the provided user input
+    assert result["type"] == "create_entry"
+    assert result["title"] == "Valid Location"
+    assert result["data"] == USER_INPUT
+>>>>>>> 0ef05b56a4 (mock api using client (#25))

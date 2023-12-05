@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 """Provide common fixtures for tests."""
 from unittest.mock import MagicMock, Mock, patch
 
@@ -7,6 +8,13 @@ import pytest
 from homeassistant.components.openAQ import const
 from homeassistant.components.openAQ.coordinator import OpenAQDataCoordinator
 
+=======
+"""Provide common fixtures for tests."""
+from unittest.mock import Mock, patch
+
+import pytest
+
+>>>>>>> 0ef05b56a4 (mock api using client (#25))
 
 class MockAQClientSuccess:
     """Mock for AQClient that simulates a successful response."""
@@ -21,6 +29,16 @@ class MockAQClientSuccess:
 
 
 @pytest.fixture
+<<<<<<< HEAD
+=======
+def mock_aq_client():
+    """Fixture to create a basic mock AQClient."""
+    with patch("homeassistant.components.openAQ.config_flow.AQClient") as mock_client:
+        yield mock_client.return_value
+
+
+@pytest.fixture
+>>>>>>> 0ef05b56a4 (mock api using client (#25))
 def mock_aq_client_no_sensors():
     """Fixture to create a mock AQClient where get_device returns an empty sensors list."""
     with patch("homeassistant.components.openAQ.config_flow.AQClient") as mock_client:
@@ -35,6 +53,7 @@ def mock_aq_client_valid_data():
         "homeassistant.components.openAQ.config_flow.AQClient", new=MockAQClientSuccess
     ):
         yield
+<<<<<<< HEAD
 
 
 class MockAQClient:
@@ -102,3 +121,5 @@ async def setup_openaq(hass, mock_openaq_client):
 =======
 """Define test fixtures for openAQ."""
 >>>>>>> 0137d8c7a9 (create test folder)
+=======
+>>>>>>> 0ef05b56a4 (mock api using client (#25))
