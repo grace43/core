@@ -29,6 +29,7 @@ class AQClient:
         self.api_key = api_key
         self.location_id = location_id
         self.client = openaq.OpenAQ(api_key=self.api_key)
+<<<<<<< HEAD
 
         if setup_device:
             self.setup_device()
@@ -39,6 +40,9 @@ class AQClient:
         self.sensors = device.sensors
         self.last_updated = device.datetime_last
 >>>>>>> 14d8d2de50 (coordinator can update data)
+=======
+        self.sensors = None
+>>>>>>> e11b6042c5 (AQclient no longer performs API call on setup)
 
     def get_device(self):
         """Get device by id."""
