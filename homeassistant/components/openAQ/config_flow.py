@@ -58,6 +58,6 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
 def get_device(location_id, api_key):
     """Return a location."""
-    client = AQClient(api_key, location_id, setup_device=False)
+    client = AQClient(api_key, location_id)
     res = client.get_device()
     return res
