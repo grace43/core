@@ -12,9 +12,7 @@ _LOGGER = logging.getLogger(__name__)
 class AQClient:
     """AQClient class for OpenAQ integration."""
 
-    def __init__(
-        self, api_key, location_id, setup_device=True, hass: HomeAssistant | None = None
-    ) -> None:
+    def __init__(self, api_key, location_id, hass: HomeAssistant | None = None) -> None:
         """Initialize AQClient."""
         self.time = datetime.now() - timedelta(hours=24)
         self.api_key = api_key
