@@ -57,7 +57,7 @@ async def async_setup_entry(
     hass: HomeAssistant, entry: ConfigEntry, async_add_devices: AddEntitiesCallback
 ) -> None:
     """Configure the sensor platform."""
-    coordinator = hass.data[DOMAIN][entry.entry_id]
+    coordinator: OpenAQDataCoordinator = hass.data[DOMAIN][entry.entry_id]
     sensors = coordinator.get_sensors()
     sensor_names = [sensor.parameter.name for sensor in sensors]
     sensor_names.append(
@@ -92,7 +92,7 @@ async def async_setup_entry(
         entities.append(
             OpenAQSensor(
                 hass,
-                str(coordinator.client.get_device().id),
+                str(coordinator.location_id),
                 OpenAQSensorDescription(
                     key=key_list[metric_index],
                     name=metric.name.replace("_", " "),
