@@ -1,6 +1,5 @@
 """Test openAQ sensors."""
 
-
 import pytest
 
 from homeassistant.core import HomeAssistant
@@ -38,7 +37,7 @@ async def test_negative_values_sensors(
     setup_integration: ComponentSetup,
     config_entry: MockConfigEntry,
 ):
-    """Test for successfully setting up all sensors."""
+    """Test for negative sensor values."""
     await setup_integration(
         config_entry, "location_all_good.json", "measurements_negative.json"
     )
