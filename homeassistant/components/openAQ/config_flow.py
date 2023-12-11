@@ -37,15 +37,19 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         self._data = user_input
 
-        res = get_device(
-            location_id=user_input[LOCATION_ID], api_key=user_input[API_KEY_ID]
-        ).sensors
+        client = AQClient(
+            user_input[API_KEY_ID], user_input[LOCATION_ID], setup_device=False
+        )
+        result = client.get_device()
 
-        name = get_device(
-            location_id=user_input[LOCATION_ID], api_key=user_input[API_KEY_ID]
-        ).locality
+        sensors = result.sensors
 
-        if len(res) == 0:
+        name = result.locality
+
+        if name is None:
+            name = result.name
+
+        if len(sensors) == 0:
             errors["location"] = "not_found"
             return self.async_show_form(
                 step_id=self._data[LOCATION_ID],
@@ -54,10 +58,3 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             )
 
         return self.async_create_entry(title=name, data=user_input)
-
-
-def get_device(location_id, api_key):
-    """Return a location."""
-    client = AQClient(api_key, location_id, setup_device=False)
-    res = client.get_device()
-    return res

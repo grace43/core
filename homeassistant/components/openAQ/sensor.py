@@ -59,8 +59,8 @@ async def async_setup_entry(
     """Configure the sensor platform."""
     coordinator: OpenAQDataCoordinator = hass.data[DOMAIN][entry.entry_id]
     sensors = coordinator.get_sensors()
-    sensor_names = [sensor.parameter.name for sensor in sensors]
-    sensor_names.append(
+    sensor_names = {sensor.parameter.name for sensor in sensors}
+    sensor_names.add(
         "last_update"
     )  # Special case for last updated as it is not available in get_sensors() but in the sensor data instead
     sensors_metrics = [
@@ -155,10 +155,19 @@ class OpenAQSensor(CoordinatorEntity[OpenAQDataCoordinator], SensorEntity):
     def native_value(self):
         """Return the state of the sensor, rounding if a number."""
         name = self.entity_description.key
+        data = self.coordinator.data.get(name)
         if self.metric == SensorDeviceClass.TIMESTAMP:
             return datetime.strptime(
-                self.coordinator.data.get(name),
+                data,
                 "%Y-%m-%dT%H:%M:%S%z",  # The datetime from the response will be a string that needs to be converted
             )
+        if self.metric == SensorDeviceClass.ATMOSPHERIC_PRESSURE and data > 0:
+            return data / 1000
+        if (
+            self.metric != SensorDeviceClass.TEMPERATURE
+            and data is not None
+            and data < 0
+        ):
+            return None
 
-        return self.coordinator.data.get(name)
+        return data

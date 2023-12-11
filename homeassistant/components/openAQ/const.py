@@ -18,7 +18,7 @@ OPENAQ_PARAMETERS = {
     "o3": SensorDeviceClass.OZONE,
     "pressure": SensorDeviceClass.ATMOSPHERIC_PRESSURE,
     "temperature": SensorDeviceClass.TEMPERATURE,
-    "relativehumidity": SensorDeviceClass.HUMIDITY,
+    "humidity": SensorDeviceClass.HUMIDITY,
     "no2": SensorDeviceClass.NITROGEN_DIOXIDE,
     "no": SensorDeviceClass.NITROGEN_MONOXIDE,
     "co": SensorDeviceClass.CO,
