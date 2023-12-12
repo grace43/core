@@ -75,9 +75,11 @@ class ConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         self._data = {API_KEY_ID: self.api_key, LOCATION_ID: self.location_id}
 
-        res = get_device(location_id=self.location_id, api_key=self.api_key).sensors
+        device = get_device(location_id=self.location_id, api_key=self.api_key)
 
-        name = get_device(location_id=self.location_id, api_key=self.api_key).locality
+        res = device.sensors
+
+        name = device.locality
 
         if name is None:
             name = {i for i in locations_dict if locations_dict[i] == self.location_id}

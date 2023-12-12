@@ -7,7 +7,6 @@ DOMAIN = "openAQ"
 
 API_KEY_ID = "api_id"
 LOCATION_ID = "location_id"
-THIRD_FIELD = "test"
 COUNTRY = "country"
 LOCATION = "location"
 
