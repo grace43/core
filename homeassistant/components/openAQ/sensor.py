@@ -176,6 +176,3 @@ class OpenAQSensor(CoordinatorEntity[OpenAQDataCoordinator], SensorEntity):
         except ValueError:
             # Specific exception for handling datetime parsing errors
             return None
-        except TypeError:
-            # Another specific exception if data types are not as expected
-            return None
