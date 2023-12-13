@@ -21,42 +21,12 @@
       "sensors": [
         {
           "id": 34819,
-          "name": "pm10 µg/m³",
+          "name": "pm10 μg/m3",
           "parameter": {
             "id": 1,
             "name": "pm10",
-            "units": "µg/m³",
+            "units": "μg/m3",
             "displayName": "PM10"
-          }
-        },
-        {
-          "id": 34820,
-          "name": "pm25 µg/m³",
-          "parameter": {
-            "id": 2,
-            "name": "pm25",
-            "units": "µg/m³",
-            "displayName": "PM2.5"
-          }
-        },
-        {
-          "id": 34817,
-          "name": "no2 µg/m³",
-          "parameter": {
-            "id": 5,
-            "name": "no2",
-            "units": "µg/m³",
-            "displayName": "NO₂ mass"
-          }
-        },
-        {
-          "id": 34818,
-          "name": "o3 µg/m³",
-          "parameter": {
-            "id": 3,
-            "name": "o3",
-            "units": "µg/m³",
-            "displayName": "O₃ mass"
           }
         }
       ],
@@ -68,8 +38,8 @@
         "local": "2020-05-07T00:00:00+02:00"
       },
       "datetimeLast": {
-        "utc": "2023-12-08T11:00:00+00:00",
-        "local": "2023-12-08T12:00:00+01:00"
+        "utc": "Invalid-Timestamp-Format",
+        "local": "Invalid-Timestamp-Format"
       }
     }
   ]

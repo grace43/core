@@ -20,7 +20,7 @@
           "local": "2023-12-07T14:00:00+01:00"
         }
       },
-      "value": -29.0,
+      "value": 29.0,
       "parameter": {
         "id": 5,
         "name": "no2",
@@ -68,7 +68,7 @@
           "local": "2023-12-07T14:00:00+01:00"
         }
       },
-      "value": -8.2,
+      "value": 8.2,
       "parameter": {
         "id": 2,
         "name": "pm25",
@@ -116,7 +116,7 @@
           "local": "2023-12-07T14:00:00+01:00"
         }
       },
-      "value": -15.0,
+      "value": 15.0,
       "parameter": {
         "id": 1,
         "name": "pm10",
@@ -164,7 +164,7 @@
           "local": "2023-12-07T15:00:00+01:00"
         }
       },
-      "value": -17.0,
+      "value": 17.0,
       "parameter": {
         "id": 1,
         "name": "pm10",
@@ -212,7 +212,7 @@
           "local": "2023-12-10T14:00:00+00:00"
         }
       },
-      "value": -2.0,
+      "value": 2.0,
       "parameter": {
         "id": 6,
         "name": "so2",
@@ -260,7 +260,7 @@
           "local": "2023-12-10T14:00:00+01:00"
         }
       },
-      "value": -1000.0,
+      "value": 1000.0,
       "parameter": {
         "id": 132,
         "name": "pressure",
@@ -308,7 +308,7 @@
           "local": "2023-12-10T14:00:00+01:00"
         }
       },
-      "value": -70.0,
+      "value": 70.0,
       "parameter": {
         "id": 134,
         "name": "relativehumidity",
@@ -356,7 +356,7 @@
           "local": "2023-12-10T14:00:00+01:00"
         }
       },
-      "value": -43.0,
+      "value": 43.0,
       "parameter": {
         "id": 100,
         "name": "temperature",
@@ -404,7 +404,7 @@
           "local": "2023-12-10T15:00:00+01:00"
         }
       },
-      "value": -290.0,
+      "value": 290.0,
       "parameter": {
         "id": 4,
         "name": "co",
@@ -452,7 +452,7 @@
           "local": "2023-12-10T15:00:00+01:00"
         }
       },
-      "value": -54.0,
+      "value": 54.0,
       "parameter": {
         "id": 3,
         "name": "o3",

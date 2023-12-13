@@ -58,6 +58,56 @@
             "units": "µg/m³",
             "displayName": "O₃ mass"
           }
+        },
+        {
+          "id": 5306,
+          "name": "so2 µg/m³",
+          "parameter": {
+            "id": 6,
+            "name": "so2",
+            "units": "µg/m³",
+            "displayName": "SO₂ mass"
+          }
+        },
+        {
+          "id": 5157363,
+          "name": "temperature c",
+          "parameter": {
+            "id": 100,
+            "name": "temperature",
+            "units": "c",
+            "displayName": "T"
+          }
+        },
+        {
+          "id": 5157361,
+          "name": "relativehumidity %",
+          "parameter": {
+            "id": 134,
+            "name": "relativehumidity",
+            "units": "%",
+            "displayName": "H"
+          }
+        },
+        {
+          "id": 5157362,
+          "name": "pressure mb",
+          "parameter": {
+            "id": 132,
+            "name": "pressure",
+            "units": "mb",
+            "displayName": "none"
+          }
+        },
+        {
+          "id": 11672,
+          "name": "co µg/m³",
+          "parameter": {
+            "id": 4,
+            "name": "co",
+            "units": "µg/m³",
+            "displayName": "CO mass"
+          }
         }
       ],
       "coordinates": { "latitude": 57.70860999951551, "longitude": 11.97 },
