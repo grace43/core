@@ -174,5 +174,6 @@ class OpenAQSensor(CoordinatorEntity[OpenAQDataCoordinator], SensorEntity):
 
             return data
         except ValueError:
-            # Specific exception for handling datetime parsing errors
-            return None
+            if self.metric == SensorDeviceClass.TIMESTAMP:
+                # Handle datetime parsing errors specifically
+                return None

@@ -20,7 +20,7 @@ async def test_add_all_sensors_supported(
         config_entry, "location_all_good.json", "measurements_all_good.json"
     )
     assert hass.states.get("sensor.temperature").state == "43.0"
-    assert hass.states.get("sensor.ozone").state
+    assert hass.states.get("sensor.ozone").state == "54.0"
     assert hass.states.get("sensor.pm10").state == "17.0"
     assert hass.states.get("sensor.nitrogen_dioxide").state == "29.0"
     assert hass.states.get("sensor.sulphur_dioxide").state == "2.0"
@@ -61,7 +61,7 @@ async def test_invalid_timestamp_format(
     """Test for invalid timestamp format."""
     await setup_integration(
         config_entry,
-        "measurements_invalid_timestamp.json",
-        "measurements_all_good.json",
+        "location_invalid_timestamp.json",
+        "measurements_good.json",
     )
     assert hass.states.get("sensor.timestamp").state == "unknown"
