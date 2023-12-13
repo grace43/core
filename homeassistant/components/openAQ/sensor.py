@@ -155,10 +155,24 @@ class OpenAQSensor(CoordinatorEntity[OpenAQDataCoordinator], SensorEntity):
     def native_value(self):
         """Return the state of the sensor, rounding if a number."""
         name = self.entity_description.key
-        if self.metric == SensorDeviceClass.TIMESTAMP:
-            return datetime.strptime(
-                self.coordinator.data.get(name),
-                "%Y-%m-%dT%H:%M:%S%z",  # The datetime from the response will be a string that needs to be converted
-            )
+        data = self.coordinator.data.get(name)
 
-        return self.coordinator.data.get(name)
+        if self.metric == SensorDeviceClass.TIMESTAMP:
+            try:
+                # The datetime from the response will be a string that needs to be converted
+                return datetime.strptime(data, "%Y-%m-%dT%H:%M:%S%z")
+            except ValueError:
+                # Handle datetime parsing errors specifically
+                return None
+
+        if self.metric == SensorDeviceClass.ATMOSPHERIC_PRESSURE and data > 0:
+            return data / 1000
+
+        if (
+            self.metric != SensorDeviceClass.TEMPERATURE
+            and data is not None
+            and data < 0
+        ):
+            return None
+
+        return data
