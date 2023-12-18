@@ -7,6 +7,8 @@ DOMAIN = "openAQ"
 
 API_KEY_ID = "api_id"
 LOCATION_ID = "location_id"
+COUNTRY = "country"
+LOCATION = "location"
 
 SENSOR = "sensor"
 
